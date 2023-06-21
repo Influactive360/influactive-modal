@@ -5,7 +5,7 @@ body.modal-open {
 dialog#modal-dialog {
     position: fixed;
     z-index: 10000;
-    top: 0;
+    top: 50%;
     left: 50%;
     width: 80%;
     max-width: 80%;
@@ -31,4 +31,21 @@ dialog#modal-dialog::backdrop {
     cursor: pointer;
     border: none;
     background: none;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+    dialog#modal-dialog {
+        width: 95%;
+        padding: 10px;
+    }
+
+    dialog#modal-dialog h2,
+    dialog#modal-dialog p {
+        font-size: 14px;
+    }
+
+    #close-btn {
+        font-size: 16px;
+    }
 }
