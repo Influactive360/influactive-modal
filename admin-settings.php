@@ -22,7 +22,11 @@ $modal_content = get_option( 'modal_content' );
             <label for="modal_title">Modal Title</label>
             <input type="text" id="modal_title" name="modal_title" value="<?php echo $modal_title; ?>">
             <label for="modal_content">Modal Content</label>
-            <textarea id="modal_content" name="modal_content"><?php echo $modal_content; ?></textarea>
+			<?php
+			$content   = stripslashes( $modal_content );
+			$editor_id = 'modal_content';
+			wp_editor( $content, $editor_id );
+			?>
             <input type="submit" value="Save Changes">
         </form>
     </div>

@@ -20,6 +20,16 @@ function modal_plugin_assets(): void {
 
 add_action( 'wp_enqueue_scripts', 'modal_plugin_assets' );
 
+// Enqueue CSS for admin settings page
+function modal_plugin_admin_assets( $hook ): void {
+	if ( $hook !== 'settings_page_modal-plugin' ) {
+		return;
+	}
+	wp_enqueue_style( 'modal-plugin-admin-style', plugin_dir_url( __FILE__ ) . 'assets/css/admin-style.css' );
+}
+
+add_action( 'admin_enqueue_scripts', 'modal_plugin_admin_assets' );
+
 // Create admin menu
 function modal_plugin_menu(): void {
 	add_options_page( 'Modal Plugin Settings', 'Modal Plugin', 'manage_options', 'modal-plugin', 'modal_plugin_options' );
@@ -44,3 +54,14 @@ function display_modal(): void {
 }
 
 add_action( 'wp_footer', 'display_modal' );
+
+// Add settings link on plugin page
+function modal_plugin_settings_link( $links ) {
+	$settings_link = '<a href="options-general.php?page=modal-plugin">Settings</a>';
+	array_unshift( $links, $settings_link );
+
+	return $links;
+}
+
+$plugin = plugin_basename( __FILE__ );
+add_filter( "plugin_action_links_$plugin", 'modal_plugin_settings_link' );
