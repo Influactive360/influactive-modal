@@ -18,8 +18,8 @@ if (!defined('ABSPATH')) {
 // Enqueue CSS and JS
 function modal_plugin_assets(): void
 {
-    wp_enqueue_style('modal-plugin-style', plugin_dir_url(__FILE__) . 'assets/css/style.min.css');
-    wp_enqueue_script('modal-plugin-script', plugin_dir_url(__FILE__) . 'assets/js/script.min.js', array('jquery'), '1.0', true);
+    wp_enqueue_style('modal-plugin-style', plugin_dir_url(__FILE__) . 'assets/css/style.min.css', array(), '1.0');
+    wp_enqueue_script('modal-plugin-script', plugin_dir_url(__FILE__) . 'assets/js/script.min.js', array(), '1.0', true);
 }
 
 add_action('wp_enqueue_scripts', 'modal_plugin_assets');
@@ -30,7 +30,7 @@ function modal_plugin_admin_assets($hook): void
     if ($hook !== 'settings_page_modal-plugin') {
         return;
     }
-    wp_enqueue_style('modal-plugin-admin-style', plugin_dir_url(__FILE__) . 'assets/css/admin-style.scss');
+    wp_enqueue_style('modal-plugin-admin-style', plugin_dir_url(__FILE__) . 'assets/css/admin-style.scss', array(), '1.0');
 }
 
 add_action('admin_enqueue_scripts', 'modal_plugin_admin_assets');
