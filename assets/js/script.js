@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var dialog = document.getElementById('modal-dialog');
-  var closeButton = document.getElementById('close-btn');
+  const dialog = document.getElementById('modal-dialog');
+  const closeButton = document.getElementById('close-btn');
 
   // Close dialog
   closeButton.addEventListener('click', function() {
@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Reappear only the next day
-  var now = new Date();
-  var today = now.toDateString(); // convert the date to a string
-  var lastShownDate = localStorage.getItem('modalLastShownDate');
+  const now = new Date();
+  const today = now.toDateString(); // convert the date to a string
+  const lastShownDate = localStorage.getItem('modalLastShownDate');
 
   if (lastShownDate === null || lastShownDate !== today) {
     localStorage.setItem('modalLastShownDate', today);
