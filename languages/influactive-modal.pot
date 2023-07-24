@@ -1,0 +1,31 @@
+# Copyright (C) 2023 Influactive
+# This file is distributed under the GPL2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Modal by Influactive 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/influactive-modal\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-07-24T12:35:47+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.8.1\n"
+"X-Domain: influactive-modal\n"
+
+#. Plugin Name of the plugin
+msgid "Modal by Influactive"
+msgstr ""
+
+#. Description of the plugin
+msgid "Ce plugin affiche une modal lors du chargement des pages."
+msgstr ""
+
+#. Author of the plugin
+msgid "Influactive"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.influactive.com"
+msgstr ""

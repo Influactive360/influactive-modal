@@ -14,12 +14,14 @@ dialog#modal-dialog {
   transform: translate(-50%, -50%);
   border: 1px solid #ccc;
   background: #fff;
-}
-dialog#modal-dialog:not([open]) {
-  display: none;
-}
-dialog#modal-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.5);
+
+  &:not([open]) {
+    display: none;
+  }
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
 }
 
 #close-btn {
@@ -36,16 +38,16 @@ dialog#modal-dialog::backdrop {
   dialog#modal-dialog {
     width: 95%;
     padding: 10px;
-  }
-  dialog#modal-dialog h2 {
-    font-size: 14px;
-  }
-  dialog#modal-dialog p {
-    font-size: 14px;
+
+    h2 {
+      font-size: 14px;
+    }
+
+    p {
+      font-size: 14px;
+    }
   }
   #close-btn {
     font-size: 16px;
   }
 }
-
-/*# sourceMappingURL=style.css.map */

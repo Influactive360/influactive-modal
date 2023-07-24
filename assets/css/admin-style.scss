@@ -1,0 +1,29 @@
+$color_1: #fff;
+$background-color_1: #0073aa;
+
+.wrap {
+  max-width: 60%;
+  margin: 0 auto;
+
+  input[type="text"] {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+  input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    color: $color_1;
+    border: none;
+    background-color: $background-color_1;
+  }
+}
