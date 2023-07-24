@@ -30,7 +30,7 @@ function modal_plugin_admin_assets($hook): void
     if ($hook !== 'settings_page_modal-plugin') {
         return;
     }
-    wp_enqueue_style('modal-plugin-admin-style', plugin_dir_url(__FILE__) . 'assets/css/admin-style.scss', array(), '1.0');
+    wp_enqueue_style('modal-plugin-admin-style', plugin_dir_url(__FILE__) . 'assets/css/admin-style.min.css', array(), '1.0');
 }
 
 add_action('admin_enqueue_scripts', 'modal_plugin_admin_assets');
@@ -64,12 +64,11 @@ function display_modal(): void
 add_action('wp_footer', 'display_modal');
 
 // Add settings link on plugin page
-function modal_plugin_settings_link($links)
+function modal_plugin_settings_link($links): array
 {
-    $settings_link = '<a href="options-general.php?page=modal-plugin">Settings</a>';
-    array_unshift($links, $settings_link);
+    $settings_link = array('<a href="options-general.php?page=modal-plugin">Settings</a>');
 
-    return $links;
+    return array_merge($links, $settings_link);
 }
 
 $plugin = plugin_basename(__FILE__);
