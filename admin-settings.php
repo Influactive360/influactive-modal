@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    throw new RuntimeException("WordPress environment not loaded. Exiting...");
+}
+
 if (!checkUserPermissions()) {
     return;
 }
