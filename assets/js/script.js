@@ -1,25 +1,20 @@
-document.addEventListener('DOMContentLoaded', function() {
-	const dialog = document.getElementById('modal-dialog');
-	const closeButton = document.getElementById('close-btn');
-
-	if (dialog && closeButton) {
-
-		// Close dialog
-		closeButton.addEventListener('click', function() {
-			closeDialog();
-		});
-
-		// Close dialog on ESC
-		window.addEventListener('keydown', function(event) {
-			if (event.key === 'Escape' && dialog && dialog.open) {
-				closeDialog();
-			}
-		});
+function addEventListenersToDialog(dialog, closeButton) {
+	function closeDialog() {
+		dialog.close();
+		document.body.classList.remove('modal-open');
 	}
 
-	// Reappear only the next day
-	const now = new Date();
-	const today = now.toDateString(); // convert the date to a string
+	closeButton.addEventListener('click', closeDialog);
+
+	window.addEventListener('keydown', function(event) {
+		if (event.key === 'Escape' && dialog.style.display !== 'none') {
+			closeDialog();
+		}
+	});
+}
+
+function checkDateAndShowDialog(dialog) {
+	const today = new Date().toDateString();
 	const lastShownDate = localStorage.getItem('modalLastShownDate');
 
 	if (lastShownDate === null || lastShownDate !== today) {
@@ -27,9 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		dialog.showModal();
 		document.body.classList.add('modal-open');
 	}
+}
 
-	function closeDialog() {
-		dialog.close();
-		document.body.classList.remove('modal-open');
+function manageModalDialog() {
+	const dialog = document.getElementById('modal-dialog');
+	const closeButton = document.getElementById('close-btn');
+
+	if (dialog && closeButton) {
+		addEventListenersToDialog(dialog, closeButton);
+		checkDateAndShowDialog(dialog);
 	}
-})
+}
+
+document.addEventListener('DOMContentLoaded', manageModalDialog);
