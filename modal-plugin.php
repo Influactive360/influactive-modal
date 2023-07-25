@@ -102,11 +102,10 @@ $plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_{$plugin}", 'modal_plugin_settings_link');
 
 /**
- * Checks the user permissions to determine if they have the capability to manage options.
+ * Checks if the current user has the permission to edit posts.
  *
- * @return bool true if the user has the capability to manage options, false otherwise.
- * @throws RuntimeException if the WordPress environment is not loaded
- *
+ * @return bool True if the current user has the permission to edit posts, false otherwise.
+ * @throws RuntimeException If the WordPress environment is not loaded.
  */
 function checkUserPermissions(): bool
 {
@@ -114,7 +113,7 @@ function checkUserPermissions(): bool
         throw new RuntimeException("WordPress environment not loaded. Exiting...");
     }
 
-    if (!current_user_can('manage_options')) {
+    if (!current_user_can('edit_posts')) {
         return false;
     }
 
