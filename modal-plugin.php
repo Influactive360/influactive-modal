@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Modal by Influactive
  * Description: Ce plugin affiche une modal lors du chargement des pages.
- * Version: 1.0
+ * Version: 1.1
  * Author: Influactive
  * Author URI: https://www.influactive.com
  * License: GPL2
@@ -22,8 +22,8 @@ if (!defined('ABSPATH')) {
  */
 function modal_plugin_assets(): void
 {
-    wp_enqueue_style('modal-plugin-style', plugin_dir_url(__FILE__) . 'assets/css/style.min.css', array(), '1.0');
-    wp_enqueue_script('modal-plugin-script', plugin_dir_url(__FILE__) . 'assets/js/script.min.js', array(), '1.0', true);
+    wp_enqueue_style('modal-plugin-style', plugin_dir_url(__FILE__) . 'assets/css/style.min.css', array(), '1.1');
+    wp_enqueue_script('modal-plugin-script', plugin_dir_url(__FILE__) . 'assets/js/script.min.js', array(), '1.1', true);
 }
 
 add_action('wp_enqueue_scripts', 'modal_plugin_assets');
@@ -39,7 +39,7 @@ function modal_plugin_admin_assets(string $hook): void
     if ($hook !== 'settings_page_modal-plugin') {
         return;
     }
-    wp_enqueue_style('modal-plugin-admin-style', plugin_dir_url(__FILE__) . 'assets/css/admin-style.min.css', array(), '1.0');
+    wp_enqueue_style('modal-plugin-admin-style', plugin_dir_url(__FILE__) . 'assets/css/admin-style.min.css', array(), '1.1');
 }
 
 add_action('admin_enqueue_scripts', 'modal_plugin_admin_assets');
