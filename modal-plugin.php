@@ -66,7 +66,11 @@ function modal_plugin_options(): void
     include 'admin-settings.php';
 }
 
-// Display Modal
+/**
+ * Displays the modal dialog on the page.
+ *
+ * @return void
+ */
 function display_modal(): void
 {
     $modal_title = get_option('modal_title');
