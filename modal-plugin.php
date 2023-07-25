@@ -73,8 +73,8 @@ function modal_plugin_options(): void
  */
 function display_modal(): void
 {
-    $modal_title = get_option('modal_title');
-    $modal_content = get_option('modal_content');
+    $modal_title = get_option('modal_title') ?? '';
+    $modal_content = get_option('modal_content') ?? '';
     echo '<dialog id="modal-dialog">
             <h2>' . $modal_title . '</h2>
             <p>' . $modal_content . '</p>

@@ -14,8 +14,8 @@ if (isset($_POST['modal_title'], $_POST['modal_content'])) {
 }
 
 // Fetch data
-$modal_title = get_option('modal_title');
-$modal_content = get_option('modal_content');
+$modal_title = get_option('modal_title') ?? '';
+$modal_content = get_option('modal_content' ?? '');
 
 ?>
 
