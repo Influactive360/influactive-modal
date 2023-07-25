@@ -12,10 +12,14 @@
  **/
 
 if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+    throw new RuntimeException("WordPress environment not loaded. Exiting...");
 }
 
-// Enqueue CSS and JS
+/**
+ * Enqueues the CSS and JavaScript assets required for the modal plugin.
+ *
+ * @return void
+ */
 function modal_plugin_assets(): void
 {
     wp_enqueue_style('modal-plugin-style', plugin_dir_url(__FILE__) . 'assets/css/style.min.css', array(), '1.0');
@@ -24,8 +28,13 @@ function modal_plugin_assets(): void
 
 add_action('wp_enqueue_scripts', 'modal_plugin_assets');
 
-// Enqueue CSS for admin settings page
-function modal_plugin_admin_assets($hook): void
+/**
+ * Enqueues the CSS asset required for the admin settings page of the modal plugin.
+ *
+ * @param string $hook The current admin page hook.
+ * @return void
+ */
+function modal_plugin_admin_assets(string $hook): void
 {
     if ($hook !== 'settings_page_modal-plugin') {
         return;
@@ -35,7 +44,11 @@ function modal_plugin_admin_assets($hook): void
 
 add_action('admin_enqueue_scripts', 'modal_plugin_admin_assets');
 
-// Create admin menu
+/**
+ * Adds an option page for the Modal Plugin to the WordPress admin menu.
+ *
+ * @return void
+ */
 function modal_plugin_menu(): void
 {
     add_options_page('Modal Plugin Settings', 'Modal Plugin', 'manage_options', 'modal-plugin', 'modal_plugin_options');
@@ -43,7 +56,11 @@ function modal_plugin_menu(): void
 
 add_action('admin_menu', 'modal_plugin_menu');
 
-// Include admin settings
+/**
+ * Loads the admin settings page for the modal plugin.
+ *
+ * @return void
+ */
 function modal_plugin_options(): void
 {
     include 'admin-settings.php';
@@ -63,13 +80,39 @@ function display_modal(): void
 
 add_action('wp_footer', 'display_modal');
 
-// Add settings link on plugin page
-function modal_plugin_settings_link($links): array
+/**
+ * Returns an array of plugin action links to be displayed on the plugins page.
+ *
+ * @param array $links An array of existing plugin action links.
+ * @return array An array of updated plugin action links with the "Settings" link added.
+ */
+function modal_plugin_settings_link(array $links): array
 {
-    $settings_link = array('<a href="options-general.php?page=modal-plugin">Settings</a>');
+    $settings_url = 'options-general.php?page=modal-plugin';
+    $settings_link = ["<a href='{$settings_url}'>Settings</a>"];
 
     return array_merge($links, $settings_link);
 }
 
 $plugin = plugin_basename(__FILE__);
-add_filter("plugin_action_links_$plugin", 'modal_plugin_settings_link');
+add_filter("plugin_action_links_{$plugin}", 'modal_plugin_settings_link');
+
+/**
+ * Checks the user permissions to determine if they have the capability to manage options.
+ *
+ * @return bool true if the user has the capability to manage options, false otherwise.
+ * @throws RuntimeException if the WordPress environment is not loaded
+ *
+ */
+function checkUserPermissions(): bool
+{
+    if (!defined('ABSPATH')) {
+        throw new RuntimeException("WordPress environment not loaded. Exiting...");
+    }
+
+    if (!current_user_can('manage_options')) {
+        return false;
+    }
+
+    return true;
+}
